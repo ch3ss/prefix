@@ -1,0 +1,112 @@
+\documentclass[11pt, xcolor=dvipsnames]{beamer}
+\usetheme{Madrid}
+\usepackage[utf8x]{inputenc}
+\usecolortheme[named=BrickRed]{structure}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{language=Java,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\footnotesize\color{blue}\ttfamily,
+}
+
+\usepackage{color}
+
+\title{Präfix-Suche}
+
+\begin{document}
+	\maketitle
+	
+	\section{Aufgabenbeschreibung}
+	\begin{frame}{Aufgabenbeschreibung}
+		\begin{itemize}
+			\item Gegeben sei eine Liste von Wörtern, und ein Suchstring. Gesucht sind alle Wörter der Liste, die mit dem Suchstring beginnen.
+			
+			\item Nicht-Funktionale Anforderungen: Parallele Suche
+			\item Interaktive Suche
+			\item Nicht erwähnt: Vorberechnung, Zeichensatz
+		\end{itemize}
+	\end{frame}
+	\section{Anwendungen}
+	\begin{frame}{Anwendungen}
+		\begin{itemize}
+			\item Autocomplete
+			\item Nomatim
+		\end{itemize}
+	\end{frame}
+	\section{Theorie}
+	\begin{frame}{Theoretischer Hintergrund}
+	\textbf{Untere Schranke ohne Vorberechnung}
+		\begin{itemize}
+			\item Sei die Liste der Länge $m$, die Länge des Suchstrings $n$
+			\item Ohne Vorberechnung muss mindestens jedes Wort mit maximal $n$ Zeichen betrachtet werden.
+			\item Minimale Laufzeit $\Omega(mn)$
+		\end{itemize}
+		\textbf{Untere Schranke mit Vorberechnung}
+		\begin{itemize}
+			\item Angenommen es sei eine Datenstruktur $\mathcal{A}$ und eine Suche würde $k$ Elemente berechnen. So ist die untere Schranke für die Suche mit Vorberechnung $\Omega(k)$. (Ausgabesensitiv)	
+		\end{itemize}
+	\end{frame}
+	\section{Umsetzung}
+	\begin{frame}{Umsetzung}
+		$m$ Wörter, $n$ Länge des Suchstrings, $k$ Ausgabegröße, $p$ Anzahl Prozessoren 
+		\centering
+		\begin{tabular}{r|ccc}
+		Name	&  Vorberechnung & sequentiell & parallel \\ 
+		\hline
+		primitiv	& &$O(mn)$ & $O(mn/p)$ \\ 
+		PrefixTree	& $O(?)$ & $O(k)$ & \\
+		Sort \& BinSearch & $O(parallelsort(m))$ & $O(\log m + k)$ & $O(\log m + k)$
+		\end{tabular} 
+	\end{frame}
+\begin{frame}[fragile]{Primitive Lösung}
+	\ldots als Einzeiler\\
+	\textbf{Sequenziell}:
+	\begin{columns}[T]
+		% code
+		\begin{column}{\textwidth}
+			\begin{lstlisting}
+public List<String> search(List<String> data, 
+				String pattern) {
+  return data.stream()
+    .filter((String s) -> s.startsWith(pattern))
+    .collect(Collectors.toList());
+}
+			\end{lstlisting}
+		\end{column}
+		% description		
+	\end{columns}
+	\textbf{Parallel:}
+	\begin{columns}
+		% code
+		\begin{column}{\textwidth}
+\begin{lstlisting}
+public List<String> search(List<String> data, 
+	String pattern) {
+  return data.parallelStream()
+    .filter((String s) -> s.startsWith(pattern))
+    .collect(Collectors.toList());
+}
+\end{lstlisting}
+			\end{column}
+			% description		
+		\end{columns}
+		Andere Lösungen sind auch vorhanden, nur nicht so kompakt!
+\end{frame}
+	\begin{frame}{Sortierung}
+		Idee:
+		\begin{itemize}
+			\item Durch die Sortierung der Eingabedaten ist die Ausgabe konsekutiv darin vorhanden. 
+			\item Benutze binäre Suche um das Anfang und Ende dieses Blocks zu finden
+		\end{itemize}
+		Problem: Wie bekomme ich das Ende hin?
+		\begin{itemize}
+			\item Zeichen sind auch nur Zahlen
+			\item Das letzten Zeichen des Pattern um '1' erhöhen, den Index durch die binäre Suche herausfinden und wieder um '1' verkleinern.  
+		\end{itemize}
+		%TODO some code
+	\end{frame}
+	
+	\begin{frame}{PräfixTree}
+		
+	\end{frame}
+\end{document}
