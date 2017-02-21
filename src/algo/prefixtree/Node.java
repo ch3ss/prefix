@@ -78,7 +78,7 @@ public class Node {
 
 		// assume str has length 1
 		String thisWord = word + str; 
-		if (isWord) {
+		if (isWord && prefix.equals(str)) {
 			list.add(thisWord); 
 		}
 		String remainingPrefix = prefix.substring(str.length()); 

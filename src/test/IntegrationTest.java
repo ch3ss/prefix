@@ -32,20 +32,20 @@ public class IntegrationTest {
 		
 		for (StringSearch algo : algorithms) {
 			algo.precompute(testData);
-			Assert.assertEquals(algo.search("AAAA").size(), 1);			
+			Assert.assertEquals(algo.getName(), 1, algo.search("AAAA").size());			
 			Assert.assertTrue(algo.toString() + ": result=" +  algo.search("AAAA").get(0), algo.search("AAAA").get(0).equals("AAAA"));
 			
-			Assert.assertEquals(algo.search("AAA").size(), 26);
+			Assert.assertEquals(algo.getName(),  26, algo.search("AAA").size());
 			
-			Assert.assertEquals(algo.search("AA").size(), 26*26);
+			Assert.assertEquals(algo.getName(), 26*26, algo.search("AA").size());
 			
-			Assert.assertEquals(algo.search("A").size(), 26*26*26);
+			Assert.assertEquals(algo.getName(), 26*26*26, algo.search("A").size());
 			
-			Assert.assertEquals(algo.search("A").size(), 26*26*26);
+			Assert.assertEquals(algo.getName(), 26*26*26, algo.search("A").size());
 			
-			Assert.assertEquals(algo.search("").size(), testData.size());
+			Assert.assertEquals(algo.getName(), testData.size(), algo.search("").size());
 			
-			Assert.assertEquals(algo.getName(), algo.search("AAAAA").size(), 0);
+			Assert.assertEquals(algo.getName(), 0, algo.search("AAAAA").size());
 			
 		}
 	}
