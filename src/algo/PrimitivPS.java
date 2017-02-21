@@ -3,14 +3,7 @@ package algo;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PrimitivPS implements StringSearch {
-
-	List<String> data;
-
-	@Override
-	public void precompute(List<String> data) {
-		this.data = data;
-	}
+public class PrimitivPS extends AbstractPrimitiv {
 
 	@Override
 	public List<String> search(String pattern) {

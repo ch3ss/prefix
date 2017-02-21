@@ -14,6 +14,7 @@ public class SortedSearch implements StringSearch{
 			return o1.compareTo(o2);
 		}
 	};
+
 	
 	@Override
 	public void precompute(List<String> data) {		
@@ -60,6 +61,14 @@ public class SortedSearch implements StringSearch{
 	@Override
 	public String getName() {
 		return "Sorted";
+	}
+	
+	@Override
+	public void append(String word) {
+		int idx = Collections.binarySearch(data, word);
+		if (idx < 0) {
+			data.add(-idx, word);
+		}
 	}
 
 }

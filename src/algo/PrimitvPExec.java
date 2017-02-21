@@ -8,16 +8,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class PrimitvPExec implements StringSearch {
+public class PrimitvPExec extends AbstractPrimitiv {
 
-	ExecutorService executor = Executors.newCachedThreadPool();
+	protected ExecutorService executor = Executors.newCachedThreadPool();
 	
-	List<String> data;
-	@Override
-	public void precompute(List<String> data) {
-		this.data = data;
-	}
-
 	@Override
 	public List<String> search(String pattern) {
 		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");

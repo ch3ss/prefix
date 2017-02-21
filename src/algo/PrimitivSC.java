@@ -3,12 +3,7 @@ package algo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimitivSC implements StringSearch{
-	List<String> data;
-	@Override
-	public void precompute(List<String> data) {
-		this.data = data;
-	}
+public class PrimitivSC extends AbstractPrimitiv {
 	@Override
 	public List<String> search(String pattern) {
 		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
@@ -22,7 +17,6 @@ public class PrimitivSC implements StringSearch{
 	}
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Primitiv Sequential";
 	}
 }

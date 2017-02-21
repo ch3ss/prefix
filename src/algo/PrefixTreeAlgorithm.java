@@ -25,4 +25,9 @@ public class PrefixTreeAlgorithm implements StringSearch{
 	public String getName() {
 		return "PrefixTree";
 	}
+	
+	@Override
+	public void append(String word) {
+		root.append(word, 0, 0);
+	}
 }
