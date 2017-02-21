@@ -55,7 +55,9 @@ public class Node {
 		if (ctr == 1 && !this.isWord) {
 			// we can reduce
 			this.str += childs[lastIdx].str;
+			this.isWord = childs[lastIdx].isWord;
 			this.childs = childs[lastIdx].childs;
+			
 			// maybe possible
 			compressPath();
 		} else if (ctr > 1) {
