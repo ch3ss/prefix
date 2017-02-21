@@ -14,6 +14,7 @@ public class PrimitivSS implements StringSearch{
 
 	@Override
 	public List<String> search(String pattern) {
+		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
 		return data.stream()
 				.filter((String t) -> t.startsWith(pattern))
 				.collect(Collectors.toList());

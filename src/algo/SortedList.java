@@ -16,7 +16,7 @@ public class SortedList implements StringSearch{
 	};
 	
 	@Override
-	public void precompute(List<String> data) {
+	public void precompute(List<String> data) {		
 		String[] dataA = new String[data.size()];
 		dataA = data.toArray(dataA);
 		Arrays.parallelSort(dataA);
@@ -25,6 +25,7 @@ public class SortedList implements StringSearch{
 
 	@Override
 	public List<String> search(String pattern) {
+		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
 		if (pattern.length() == 0) {
 			return data;
 		}		

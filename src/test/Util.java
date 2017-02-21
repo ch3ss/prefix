@@ -9,11 +9,14 @@ import java.util.List;
 
 public class Util {
 
-	public static List<String> getStdInstance() {
+	public static List<String> getStdInstance(boolean endl) {
 		int offsetA = (int) 'A', l = (int) 'Z' - offsetA + 1;
-
+		
 		StringBuilder sb = new StringBuilder(4);
-		sb.append("    \n");
+		if (endl)
+			sb.append("    \n");
+		else
+			sb.append("    ");
 		List<String> list = new ArrayList<>(25 * 25 * 25 * 25);
 		for (int i = 0; i < l; i++) {
 			sb.setCharAt(0, (char) (i + offsetA));

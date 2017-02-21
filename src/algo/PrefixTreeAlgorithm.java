@@ -12,16 +12,17 @@ public class PrefixTreeAlgorithm implements StringSearch{
 	@Override
 	public void precompute(List<String> data) {
 		root = new Node(data, "", 0, 0, 255);
+		root.compressPath();
 	}
 
 	@Override
 	public List<String> search(String pattern) {
-		return root.appendToList(new ArrayList<>(), pattern, "");
+		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
+		return root.appendToList(new ArrayList<>(), pattern, "", 0);
 	}
 
 	@Override
 	public String getName() {
 		return "PrefixTree";
 	}
-
 }

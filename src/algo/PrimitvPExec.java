@@ -20,6 +20,7 @@ public class PrimitvPExec implements StringSearch {
 
 	@Override
 	public List<String> search(String pattern) {
+		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
 		final int cores = Runtime.getRuntime().availableProcessors();
 		final List<String> result = new ArrayList<>();
 		

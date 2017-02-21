@@ -11,6 +11,7 @@ public class PrimitivSC implements StringSearch{
 	}
 	@Override
 	public List<String> search(String pattern) {
+		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
 		List<String> result = new ArrayList<>(data.size());
 		for (String string : data) {
 			if (string.startsWith(pattern)) {
