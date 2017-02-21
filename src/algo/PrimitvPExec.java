@@ -19,7 +19,7 @@ public class PrimitvPExec implements StringSearch {
 	}
 
 	@Override
-	public List<String> lookFor(String pattern) {
+	public List<String> search(String pattern) {
 		final int cores = Runtime.getRuntime().availableProcessors();
 		final List<String> result = new ArrayList<>();
 		

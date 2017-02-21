@@ -4,6 +4,6 @@ import java.util.List;
 public interface StringSearch {
 
 	public void precompute(List<String> data);
-	public List<String> lookFor(String pattern);
+	public List<String> search(String pattern);
 	public String getName();
 }

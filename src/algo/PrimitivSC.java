@@ -10,7 +10,7 @@ public class PrimitivSC implements StringSearch{
 		this.data = data;
 	}
 	@Override
-	public List<String> lookFor(String pattern) {
+	public List<String> search(String pattern) {
 		List<String> result = new ArrayList<>(data.size());
 		for (String string : data) {
 			if (string.startsWith(pattern)) {
@@ -22,6 +22,6 @@ public class PrimitivSC implements StringSearch{
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Primitiv - Sequential";
+		return "Primitiv Sequential";
 	}
 }

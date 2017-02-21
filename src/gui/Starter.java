@@ -214,7 +214,7 @@ public class Starter extends JFrame {
 	private void invokeAlgorithm() {
 		listModel.clear();
 		long currTime = System.currentTimeMillis();
-		List<String> result = activeAlgo.lookFor(searchStringField.getText());
+		List<String> result = activeAlgo.search(searchStringField.getText());
 		calcTime = System.currentTimeMillis() - currTime;
 		itemCount = result.size();
 		setLabelDesc();

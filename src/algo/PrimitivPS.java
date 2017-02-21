@@ -13,7 +13,7 @@ public class PrimitivPS implements StringSearch {
 	}
 
 	@Override
-	public List<String> lookFor(String pattern) {
+	public List<String> search(String pattern) {
 		return data.parallelStream()
 				.filter((String t) -> t.startsWith(pattern))
 				.collect(Collectors.toList());

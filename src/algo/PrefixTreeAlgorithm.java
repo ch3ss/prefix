@@ -15,7 +15,7 @@ public class PrefixTreeAlgorithm implements StringSearch{
 	}
 
 	@Override
-	public List<String> lookFor(String pattern) {
+	public List<String> search(String pattern) {
 		return root.appendToList(new ArrayList<>(), pattern, "");
 	}
 
