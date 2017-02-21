@@ -13,7 +13,8 @@ import algo.PrimitivPS;
 import algo.PrimitivSC;
 import algo.PrimitivSS;
 import algo.PrimitvPExec;
-import algo.SortedList;
+import algo.SortedParallelSearch;
+import algo.SortedSearch;
 import algo.StringSearch;
 
 
@@ -24,7 +25,10 @@ public class IntegrationTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		testData = Util.getStdInstance(false);
-		algorithms = new StringSearch[] { new PrimitivSS(), new PrimitivSC(), new PrimitivPS(), new PrimitvPExec(), new SortedList(), new PrefixTreeAlgorithm() }; 
+		algorithms = new StringSearch[] { 
+				new PrimitivSS(), new PrimitivSC(), new PrimitivPS(), 
+				new PrimitvPExec(), new SortedSearch(), new PrefixTreeAlgorithm(),
+				new SortedParallelSearch()}; 
 	}	
 
 	@Test

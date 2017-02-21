@@ -122,6 +122,20 @@ Andere Lösungen sind auch vorhanden, nur nicht so kompakt!
 		
 \begin{frame}[fragile]
 	\frametitle{Sortierung - NextWord}
+	\begin{lstlisting}
+static public String nextWord(String pattern) {
+  int l = pattern.length();	
+  for (int i = l-1; i >= 0; i--) 
+    // 127 is last used position in ascii
+    if (pattern.getBytes()[i] > 126) l--;
+    else break;
+    	
+  if (l == 0) return "";	
+  int tmpL = Math.max(l - 1,0);
+  return pattern.substring(0, tmpL) 
+	  + (char)((int)pattern.charAt(tmpL) +1);
+}	
+	\end{lstlisting}
 \end{frame}
 	
 \begin{frame}[fragile]
@@ -154,12 +168,11 @@ public List<String> search(String pattern) {
 		\begin{itemize}
 			\item Basiert auf Bucketsort\\						
 			\item Kompression der Pfade für eine geringe Speicherauslastung
-			\item Implementierung ist nicht parallel (ist möglich)
 		\end{itemize}
 		\begin{center}
 		\includegraphics[scale=0.3]{pics/prefixtree.png}
 		
-		Enthaltene Wörter: PRE, PREFIX, \ldots
+		Enthaltene Wörter: PRE, PREFIX, PR\ldots
 		\end{center}
 		
 
@@ -168,12 +181,12 @@ public List<String> search(String pattern) {
 	\section{Kritik}
 	\begin{frame}{Kritik}
 		\centering
-		\begin{tabular}{c|ccccc}
-			\textbf{Name}	&  Impl. & Geschw. & parallel & Einfügen & erw. $\mathcal{A}$ \\ 
+		\begin{tabular}{c|cccccc}
+			\textbf{Name}	&  Impl. & Geschw. & Platz & parallel & Einfügen & erw. $\mathcal{A}$ \\ 
 			\hline
-			primitiv	& \cellcolor{green} & \cellcolor{orange}  & \cellcolor{green} & \cellcolor{green} & \cellcolor{green} \\ 
-			Sortieren	& \cellcolor{yellow} & \cellcolor{green}  & \cellcolor{yellow} * & \cellcolor{orange} * & \cellcolor{green}\\
-			PrefixTree & \cellcolor{orange}  & \cellcolor{red} & \cellcolor{orange} * & \cellcolor{green} & \cellcolor{yellow}
+			primitiv	& \cellcolor{green} & \cellcolor{orange}  & \cellcolor{green}& \cellcolor{green} & \cellcolor{green} & \cellcolor{green} \\ 
+			Sortieren	& \cellcolor{yellow} & \cellcolor{green} & \cellcolor{yellow} & \cellcolor{yellow} & \cellcolor{orange} * & \cellcolor{green} \\
+			PrefixTree & \cellcolor{orange}  & \cellcolor{red} & \cellcolor{red} &\cellcolor{orange} * & \cellcolor{green} & \cellcolor{yellow}
 		\end{tabular}\\
 		(*) nicht implementiert. 
 		

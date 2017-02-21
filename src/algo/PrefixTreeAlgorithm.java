@@ -11,7 +11,7 @@ public class PrefixTreeAlgorithm implements StringSearch{
 	
 	@Override
 	public void precompute(List<String> data) {
-		root = new Node(data, "", 0, 0, 255);
+		root = new Node(data, "", 0, 0, 128);
 		root.compressPath();
 	}
 

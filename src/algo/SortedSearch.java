@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortedList implements StringSearch{
+public class SortedSearch implements StringSearch{
 
-	private List<String> data;
+	protected volatile List<String> data;
 	static final Comparator<String> STRCMP = new Comparator<String>() {
 		@Override
 		public int compare(String o1, String o2) {
@@ -59,7 +59,7 @@ public class SortedList implements StringSearch{
 
 	@Override
 	public String getName() {
-		return "SortedArray";
+		return "Sorted";
 	}
 
 }

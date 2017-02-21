@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,15 +38,23 @@ import algo.PrimitivPS;
 import algo.PrimitivSC;
 import algo.PrimitivSS;
 import algo.PrimitvPExec;
-import algo.SortedList;
+import algo.SortedParallelSearch;
+import algo.SortedSearch;
 import algo.StringSearch;
 
 public class Starter extends JFrame {
 
 	public static final StringSearch[] ALGORITHMS = new StringSearch[] { new PrimitivPS(), new PrimitvPExec(),
-			new PrimitivSC(), new PrimitivSS(), new SortedList(), new PrefixTreeAlgorithm() };
+			new PrimitivSC(), new PrimitivSS(), new SortedSearch(), new SortedParallelSearch(), new PrefixTreeAlgorithm()  };
 
 	public static void main(String[] args) {
+		Arrays.sort(ALGORITHMS, new  Comparator<StringSearch>() {
+			@Override
+			public int compare(StringSearch o1, StringSearch o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+			
+		});
 		new Starter().setVisible(true);
 	}
 	

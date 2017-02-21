@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import algo.SortedList;
+import algo.SortedSearch;
 
 public class SortedTest {
 
@@ -15,13 +15,13 @@ public class SortedTest {
 	@Test
 	public void nextWordTest() {
 		
-		Assert.assertEquals("AAC", SortedList.nextWord("AAB"));
+		Assert.assertEquals("AAC", SortedSearch.nextWord("AAB"));
 		
-		Assert.assertEquals("", SortedList.nextWord(""));
+		Assert.assertEquals("", SortedSearch.nextWord(""));
 		
-		Assert.assertEquals("AB", SortedList.nextWord("AA" + (char)127));
+		Assert.assertEquals("AB", SortedSearch.nextWord("AA" + (char)127));
 		
-		Assert.assertEquals("", SortedList.nextWord(""+(char)127));
+		Assert.assertEquals("", SortedSearch.nextWord(""+(char)127));
 	}
 
 }
