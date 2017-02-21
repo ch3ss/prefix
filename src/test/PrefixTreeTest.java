@@ -19,6 +19,7 @@ public class PrefixTreeTest {
 	@Test
 	public void test() {
 //		Node node = new Node(str, childSize)
+		System.out.println( (char)128);
 	}
 
 }

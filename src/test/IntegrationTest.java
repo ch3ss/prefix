@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
 import algo.PrefixTreeAlgorithm;
 import algo.PrimitivPS;
@@ -13,6 +15,7 @@ import algo.PrimitivSS;
 import algo.PrimitvPExec;
 import algo.SortedList;
 import algo.StringSearch;
+
 
 public class IntegrationTest {
 

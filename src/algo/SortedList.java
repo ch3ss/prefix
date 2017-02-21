@@ -23,6 +23,28 @@ public class SortedList implements StringSearch{
 		this.data = Arrays.asList(dataA);		
 	}
 
+	static public String nextWord(String pattern) {
+//		String pattern2 = pattern.substring(0, size - 1) + (char)((int)pattern.charAt(size -1) +1);
+		int l = pattern.length();
+		
+		for (int i = l-1; i >= 0; i--) {
+			// 127 is last used position in ascii
+			byte val = pattern.getBytes()[i];
+			if (val > 126) {
+				l--;
+			} else {
+				break;
+			}
+		}
+		
+		if (l == 0) {
+			return "";
+		} 
+		
+		int tmpL = Math.max(l - 1,0);
+		return pattern.substring(0, tmpL) + (char)((int)pattern.charAt(tmpL) +1);
+	}
+	
 	@Override
 	public List<String> search(String pattern) {
 		if (pattern == null) throw new IllegalArgumentException("Pattern shouldn't be null");
@@ -31,9 +53,7 @@ public class SortedList implements StringSearch{
 		}		
 		
 		int idxL = Collections.binarySearch(data, pattern);
-		int size = pattern.length();
-		String pattern2 = pattern.substring(0, size - 1) + (char)((int)pattern.charAt(size -1) +1);
-		int idxR = Collections.binarySearch(data, pattern2);
+		int idxR = Collections.binarySearch(data, nextWord(pattern));
 		return this.data.subList(Math.max(0, idxL < 0 ? -idxL-1 : idxL), Math.max(Math.min(idxR < 0 ? -idxR-1 : idxR, data.size()),0));
 	}
 
