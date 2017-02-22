@@ -188,7 +188,6 @@ public class Starter extends JFrame {
 				int idx = Integer.parseInt(rb.getName());
 				activeAlgo = ALGORITHMS[idx];
 				invokePrecompute();
-				// TODO invoke precompute
 			}
 		};
 
@@ -228,8 +227,10 @@ public class Starter extends JFrame {
 		calcTime = System.currentTimeMillis() - currTime;
 		itemCount = result.size();
 		setLabelDesc();
-		for (String string : result) {
-			listModel.addElement(string);
+		listModel.setSize(result.size());
+		// FIXME here lies the performance issue
+		for (int i = 0; i < result.size(); ++i) {
+			listModel.set(i, result.get(i));
 		}
 	}
 

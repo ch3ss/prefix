@@ -24,7 +24,7 @@
 			\item Gegeben sei eine Liste von Wörtern, und ein Suchstring. Gesucht sind alle Wörter der Liste, die mit dem Suchstring beginnen.
 			
 			\item Nicht-Funktionale Anforderungen: Parallele Suche
-			\item Interaktive Suche
+			\item Inkrementelle Suche, bzw. zwischenspeichern der Suchergebnisse
 			\item Nicht erwähnt: Vorberechnung, Zeichensatz, Einfügen von weiteren Wörtern 
 		\end{itemize}
 	\end{frame}
@@ -44,7 +44,7 @@
 	
 	\textbf{Untere Schranke ohne Vorberechnung}
 		\begin{itemize}
-			\item Ohne Vorberechnung muss mindestens jedes Wort mit maximal $n$ Zeichen betrachtet werden.
+			\item Ohne Vorberechnung muss  jedes Wort mindestens einmal mit maximal $n$ Zeichen betrachtet werden.
 			\item Minimale Laufzeit $\Omega(mn)$
 		\end{itemize}
 		\textbf{Untere Schranke mit Vorberechnung}
@@ -55,7 +55,7 @@
 	\end{frame}
 	\section{Umsetzung}
 	\begin{frame}{Umsetzung - Laufzeitvergleich}
-		$m$ Wörter, $l$ Länge des längstem Wortes, $n$ Länge des Suchstrings,\\$k$ Ausgabegröße,$p$ Anzahl Prozessoren 
+		$m$ Wörter, Länge $l$ des längsten Wortes, Länge $n$ des Suchstrings,\\Ausgabegröße (Wortanzahl) $k$, Anzahl der Prozessoren $p$
 		
 		\begin{center}
 			\begin{tabular}{r|ccc}
@@ -69,7 +69,7 @@
 	\end{frame}
 	
 	\begin{frame}{Umsetzung - Zusätzlicher Speicherbedarf}
-		$m$ Wörter, $n$ Länge des Suchstrings, $k$ Ausgabegröße, \\$p$ Anzahl Prozessoren, $\alpha$ Größe Alphabet
+		$m$ Wörter, Länge $l$ des längsten Wortes, Länge $n$ des Suchstrings,\\Ausgabegröße (Wortanzahl) $k$, Anzahl der Prozessoren $p$
 		\begin{center}
 		\begin{tabular}{r|ccc}
 			\textbf{Name}	&  Vorberechnung & sequentiell & parallel \\ 
@@ -102,7 +102,7 @@ public List<String> search(List<String> data, String pattern){
 }
 		\end{lstlisting}
 
-Andere Lösungen sind auch vorhanden, nur nicht so kompakt!
+Andere Lösungen sind auch vorhanden, nur nicht so kompakt.
 \end{frame}
 
 	\begin{frame}
@@ -110,7 +110,7 @@ Andere Lösungen sind auch vorhanden, nur nicht so kompakt!
 	Idee:
 	\begin{itemize}
 		\item Durch die Sortierung der Eingabedaten ist die Ausgabe konsekutiv darin vorhanden. 
-		\item Benutze binäre Suche um das Anfang und Ende dieses Blocks zu finden
+		\item Benutze binäre Suche um den Anfang und das Ende dieses Blocks zu finden.
 	\end{itemize}
 	Problem: Wie bekomme ich das Ende hin?
 	\begin{itemize}
@@ -191,7 +191,7 @@ public List<String> search(String pattern) {
 		(*) nicht implementiert. 
 		
 		\begin{itemize}
-			\item inkrementelle Suche habe ich aufgrund der Geschwindigkeit in eine interaktive Suche umgewandelt
+			\item Die inkrementelle Suche habe ich aufgrund der Geschwindigkeit in eine interaktive Suche umgewandelt.
 		\end{itemize}
 		%Primitive Suche
 		%\begin{itemize}
@@ -215,6 +215,19 @@ public List<String> search(String pattern) {
 	\section{Demo}
 	\begin{frame}{Demo}
 		\centering
-		\includegraphics[scale=0.4]{pics/screenshot.png}
+
+			\includegraphics[scale=0.4]{pics/screenshot.png}
+
+			Code und Folien sind versioniert unter:\\
+			https://github.com/ch3ss/prefix
+	\end{frame}
+	\section{Backup}
+	\begin{frame}{Backup}
+		Inkrementelle Suche:
+		\begin{itemize}
+			\item Speichern der Ergebnisse und des Suchstrings.
+			\item Bei erneuter Anfrage auf Ähnlichkeit prüfen.
+			\item Bei Verfeinerung das Zwischenergebnis filtern, ansonsten neu suchen. 
+		\end{itemize}
 	\end{frame}
 \end{document}
